@@ -1,5 +1,14 @@
 <template>
-  <div id="app" class="h-100">
+  <div id="app" class="h-100" :class="backgroundClass">
+    <div class="theme">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="themeSwitch" @change="themeChanged">
+        <label class="custom-control-label" for="themeSwitch">
+          <b-icon icon="sun" v-if="isLightTheme"></b-icon>
+          <b-icon icon="moon" v-else></b-icon>
+        </label>
+      </div>
+    </div>
     <b-container class="h-100">
       <b-row class="h-100 position-relative">
         <b-col class="align-middle text-center">
@@ -38,12 +47,38 @@
         </b-col>
       </b-row>
     </b-container>
+    <div class="netlify text-center">
+      Hosted with ♥ on <a href="https://netlify.com">Netlify</a>
+    </div>
   </div>
 </template>
 
 <script>
+import { BIcon } from 'bootstrap-vue'
+
 export default {
-  name: 'App'
+  name: 'App', 
+  components: {
+    BIcon
+  },
+  data() {
+    return {
+      theme: 'light'
+    }
+  },
+  computed: {
+    isLightTheme() {
+      return this.theme === 'light'
+    }, 
+    backgroundClass() {
+      return this.isLightTheme ? 'bg-light' : 'bg-dark'
+    }
+  }, 
+  methods: {
+    themeChanged() {
+      this.theme = this.isLightTheme ? 'dark' : 'light'
+    }
+  }
 }
 </script>
 
@@ -55,8 +90,53 @@ export default {
     transform: translateY(-50%);
   }
 
+  .netlify {
+    position: absolute;
+    top: 100%;
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+    width: 100%;
+  }
+
   #app {
-    background-color: #ededed;
+    -webkit-user-select: none;         
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+  }
+
+  #app.bg-light {
+    background-color: #ededed !important;
+    color: #1c1c1c !important;
+  }
+
+  #app.bg-dark {
+    background-color: #1c1c1c !important;
+    color: #ededed !important;
+  }
+
+  .bg-light .netlify {
+    background-color: #fff;
+    -webkit-box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.1);
+  }
+
+  .bg-dark .netlify {
+    background-color: #000;
+    -webkit-box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.8);
+    box-shadow: 0px -2px 5px 0px rgba(0,0,0,0.8);
+  }
+
+  .theme { 
+    position: relative;
+    width: 100%;
+  }
+  
+  .theme .custom-switch {
+    float: right;
+    padding: 10px;
   }
 
 </style>

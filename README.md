@@ -1,5 +1,8 @@
 # dan-scott.dev
 
+## Netlify Status 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e1d9ea8f-728c-4125-bda3-e18779614692/deploy-status)](https://app.netlify.com/sites/dan-scott/deploys)
+
 ## Project setup
 ```
 npm install
