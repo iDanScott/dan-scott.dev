@@ -2,10 +2,10 @@
   <div id="app" class="h-100" :class="backgroundClass">
     <div class="theme">
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="themeSwitch" @change="themeChanged" :checked="!isLightTheme">
+        <input type="checkbox" class="custom-control-input" id="themeSwitch" @change="themeChanged" :checked="isLightTheme">
         <label class="custom-control-label" for="themeSwitch">
-          <b-icon icon="sun" v-if="isLightTheme"></b-icon>
-          <b-icon icon="moon" v-else></b-icon>
+          <b-icon icon="moon" v-if="!isLightTheme"></b-icon>
+          <b-icon icon="sun" v-else></b-icon>
         </label>
       </div>
     </div>
