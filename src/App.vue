@@ -2,7 +2,7 @@
   <div id="app" class="h-100" :class="backgroundClass">
     <div class="theme">
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="themeSwitch" @change="themeChanged">
+        <input type="checkbox" class="custom-control-input" id="themeSwitch" @change="themeChanged" :checked="!isLightTheme">
         <label class="custom-control-label" for="themeSwitch">
           <b-icon icon="sun" v-if="isLightTheme"></b-icon>
           <b-icon icon="moon" v-else></b-icon>
@@ -63,7 +63,7 @@ export default {
   },
   data() {
     return {
-      theme: 'light'
+      theme: 'dark'
     }
   },
   computed: {
