@@ -46,7 +46,7 @@
           </b-row>
           <b-row class="mt-2">
             <b-col>
-              <img src="/images/josh.png" />
+              <img :src="joshImage" />
             </b-col>
           </b-row>
         </b-col>
@@ -77,6 +77,9 @@ export default {
     }, 
     backgroundClass() {
       return this.isLightTheme ? 'bg-light' : 'bg-dark'
+    }, 
+    joshImage() {
+      return this.isLightTheme ? '/images/josh-light.png' : '/images/josh.png'
     }
   }, 
   methods: {
