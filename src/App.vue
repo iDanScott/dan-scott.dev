@@ -44,6 +44,11 @@
               </a>
             </b-col>
           </b-row>
+          <b-row class="mt-2">
+            <b-col>
+              <img src="/images/josh.png" />
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
     </b-container>
