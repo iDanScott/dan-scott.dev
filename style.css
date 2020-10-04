@@ -137,8 +137,26 @@ p.subtext {
   padding-top: 5px;
 }
 
-.project .project-author .project-author-details .project-authored-date {
+.project .project-author .project-author-details a:link, 
+.project .project-author .project-author-details a:visited { 
+  color: #000;
+  text-decoration: none;
+  font-weight: 100;
+} 
+
+.project .project-author .project-author-details a:hover {
+  text-decoration: underline;
+}
+
+.project .project-author .project-author-details .project-authored-date a:link, 
+.project .project-author .project-author-details .project-authored-date a:visited {
   color: #666;
+  text-decoration: none;
+  font-weight: 100;
+}
+
+.project .project-author .project-author-details .project-authored-date a:hover {
+  text-decoration: underline;
 }
 
 .project .project-title {
