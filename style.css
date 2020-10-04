@@ -1,0 +1,158 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: arial;
+}
+
+ul {
+  padding: 0 0 0 2rem;
+  margin: 0;  
+  list-style-type: ' 👉 ';
+}
+
+a:link, 
+a:visited {
+  font-weight: bold;
+  color: #ff0000;
+}
+
+h1, h2, p { 
+  margin: 0;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+h2 {
+  font-weight: 300;
+  color: #666;
+}
+
+div {
+  margin: 0;
+}
+
+p.subtext {
+  font-size: 0.8rem;
+  color: #444;
+}
+
+.container { 
+  width: 66%;
+  position: relative;
+  margin: 0 auto 0 auto;
+  max-width: 800px;
+  padding-top: 30px;
+}
+
+@media only screen and (max-width: 1160px) {
+  .container {
+    max-width: 700px;
+    min-width: 400px;
+  }
+}
+
+.header-section {
+  display: block;
+}
+
+.header-section .description {
+  vertical-align: top;
+  display: inline-block;
+  position: relative;
+  width: 49%;
+  padding-top: 40px;
+}
+
+.header-section .description h1 {
+  font-size: 4rem;
+}
+
+.header-section .img {
+  display: inline-block;
+  position: relative;
+  width: 49%;
+  text-align: center;
+}
+
+.header-section .img img {
+  border-radius: 50%;
+}
+
+.links {
+  padding: 10px 0 10px 0;
+}
+
+.links a {
+  text-align: center;
+  width: 24%;
+  display: inline-block;
+  position: relative;
+}
+
+.bio {
+  padding-bottom: 20px;
+  text-align: justify;
+}
+
+.show-jokes {
+  padding-bottom: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.project {
+  font-size: 0.9rem;
+  border: 1px solid #888;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 2px 0px #888;
+  -moz-box-shadow: 0px 0px 2px 0px #888;
+  box-shadow: 0px 0px 2px 0px #888;
+}
+
+.project .project-author {
+  display: block;
+  position: relative;
+}
+
+.project .project-author .project-author-image img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.project .project-author .project-author-image, 
+.project .project-author .project-author-details {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.project .project-author .project-author-details {
+  padding-top: 5px;
+}
+
+.project .project-author .project-author-details .project-authored-date {
+  color: #666;
+}
+
+.project .project-title {
+  margin-bottom: 10px;
+}
+
+.project .project-title a:link, 
+.project .project-title a:visited {
+  font-size: 2rem;
+  text-decoration: none;
+  color: #000;
+}
+
+.project .project-embed iframe {
+  width: 100%;
+  height: 400px;
+}
