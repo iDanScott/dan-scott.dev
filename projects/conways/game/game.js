@@ -2,12 +2,15 @@ function Game(context, newGenerationCallback) {
   this.context = context;
   this.renderer = new Renderer(context);
   this.fps = 10;
-  this.data = new Array(200);
+  this.data = new Array(100);
   this.generation = 0;
   this.newGenerationCallback = newGenerationCallback;
   this.paused = false;
+
+  this.renderer.drawGridLines(1500, 1050);
+
   for (x = 0; x < this.data.length; x++) {
-    this.data[x] = new Array(200);  
+    this.data[x] = new Array(70);  
     for (var y = 0; y < this.data[x].length; y++) {
       this.data[x][y] = new Cell(x, y, Math.random() < 0.5);
     }
@@ -24,6 +27,8 @@ Game.prototype.loop = function() {
     if (60 / tick <= game.fps) {
       tick = 0;
 
+      game.drawCurrentGeneration.call(game);
+      
       if (!game.paused) {
         game.nextGeneration.call(game);
         game.generation++;
@@ -41,14 +46,20 @@ Game.prototype.resume = function() {
   this.paused = false;
 }
 
-Game.prototype.nextGeneration = function() {
+Game.prototype.drawCurrentGeneration = function() {
   for (var x = 0; x < this.data.length; x++) {
     for (var y = 0; y < this.data[x].length; y++) {
-
       var cell = this.data[x][y];
       this.draw(cell);
       cell.wasAlive = cell.alive;
+    }
+  }
+}
 
+Game.prototype.nextGeneration = function() {
+  for (var x = 0; x < this.data.length; x++) {
+    for (var y = 0; y < this.data[x].length; y++) {
+      var cell = this.data[x][y];
       this.computeNextGeneration(cell);
     }
   }
@@ -56,11 +67,14 @@ Game.prototype.nextGeneration = function() {
 
 Game.prototype.computeNextGeneration = function(cell) {
   var activeNeighbours = this.activeNeighbours(cell);
+  
   cell.alive = activeNeighbours == 3 ||
   (
     cell.alive && 
     activeNeighbours == 2
   );
+
+  cell.aliveFor = cell.alive ? cell.aliveFor + 1 : 0;
 }
 
 Game.prototype.activeNeighbours = function(cell) {
@@ -87,11 +101,34 @@ Game.prototype.activeNeighbours = function(cell) {
 }
 
 Game.prototype.draw = function(cell) {
-  if (cell.wasAlive != cell.alive)
-    this.renderer.drawCell(cell.x, cell.y, cell.alive);
+  if (cell.wasAlive != cell.alive || (cell.alive && cell.aliveFor <= 10))
+    this.renderer.drawCell(cell.x, cell.y, cell.alive, cell.aliveFor);
 }
 
 Game.prototype.setSpeed = function(speed) {
   this.fps = speed;
   console.log(this.fps);
+}
+
+Game.prototype.clear = function () {
+  for (var x = 0; x < this.data.length; x++) {
+    for (var y = 0; y < this.data[x].length; y++) {
+      var cell = this.data[x][y];
+      cell.wasAlive = false;
+      cell.alive = false;
+      cell.aliveFor = 0;
+      this.renderer.drawCell(cell.x, cell.y, cell.alive, 0);
+    }
+  }
+}
+
+Game.prototype.clicked = function(coords) {
+  var cellX = Math.trunc(coords.x / this.renderer.squareSize);
+  var cellY = Math.trunc(coords.y / this.renderer.squareSize);
+  var cell = this.data[cellX][cellY];
+
+  cell.wasAlive = !cell.alive;
+  cell.alive = !cell.alive;
+  cell.aliveFor = cell.alive ? 1 : 0;
+  this.renderer.drawCell(cell.x, cell.y, cell.alive, cell.aliveFor);
 }

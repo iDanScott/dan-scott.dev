@@ -3,4 +3,5 @@ function Cell(x, y, alive) {
   this.y = y;
   this.alive = alive;
   this.wasAlive = !alive;
+  this.aliveFor = 0;
 }
