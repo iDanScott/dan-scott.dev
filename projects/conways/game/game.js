@@ -5,6 +5,7 @@ function Game(context, newGenerationCallback) {
   this.data = new Array(200);
   this.generation = 0;
   this.newGenerationCallback = newGenerationCallback;
+  this.paused = false;
   for (x = 0; x < this.data.length; x++) {
     this.data[x] = new Array(200);  
     for (var y = 0; y < this.data[x].length; y++) {
@@ -16,11 +17,21 @@ function Game(context, newGenerationCallback) {
 Game.prototype.loop = function() {
   var game = this;
 
-  var time = setInterval(function() {
-    game.nextGeneration.call(game);
-    game.generation++;
-    game.newGenerationCallback(game.generation);
+  this.time = setInterval(function() {
+    if (!game.paused) {
+      game.nextGeneration.call(game);
+      game.generation++;
+      game.newGenerationCallback(game.generation);
+    }
   }, this.loopSpeed);
+}
+
+Game.prototype.pause = function() {
+  this.paused = true;
+}
+
+Game.prototype.resume = function() {
+  this.paused = false;
 }
 
 Game.prototype.nextGeneration = function() {

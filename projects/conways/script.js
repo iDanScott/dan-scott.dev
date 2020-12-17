@@ -1,8 +1,9 @@
+var game = null;
 
 function initialise() {
   var canvas = initialiseCanvas();
   var context = initialiseContext(canvas);
-  var game = new Game(context, newGeneration);
+  game = new Game(context, newGeneration);
   game.loop();
 }
 
@@ -11,7 +12,15 @@ function newGeneration(generation) {
 }
 
 function bindEvents() {
-
+  document.getElementById("btnPauseResume").addEventListener("click", function() {
+    if (!game.paused) {
+      game.pause();
+      this.innerText = "Resume";
+    } else {
+      game.resume();
+      this.innerText = "Pause";
+    }
+  });
 }
 
 function initialiseContext(canvas) {
