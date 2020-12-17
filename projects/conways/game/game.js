@@ -1,7 +1,7 @@
 function Game(context, newGenerationCallback) {
   this.context = context;
   this.renderer = new Renderer(context);
-  this.loopSpeed = 10;
+  this.fps = 10;
   this.data = new Array(200);
   this.generation = 0;
   this.newGenerationCallback = newGenerationCallback;
@@ -16,14 +16,21 @@ function Game(context, newGenerationCallback) {
 
 Game.prototype.loop = function() {
   var game = this;
+  var tick = 0;
 
   this.time = setInterval(function() {
-    if (!game.paused) {
-      game.nextGeneration.call(game);
-      game.generation++;
-      game.newGenerationCallback(game.generation);
+    tick++;
+    
+    if (60 / tick <= game.fps) {
+      tick = 0;
+
+      if (!game.paused) {
+        game.nextGeneration.call(game);
+        game.generation++;
+        game.newGenerationCallback(game.generation);
+      }
     }
-  }, this.loopSpeed);
+  }, 1000 / 60);
 }
 
 Game.prototype.pause = function() {
@@ -84,6 +91,7 @@ Game.prototype.draw = function(cell) {
     this.renderer.drawCell(cell.x, cell.y, cell.alive);
 }
 
-Game.prototype.setLoopSpeed = function(speed) {
-  this.loopSpeed = speed;
+Game.prototype.setSpeed = function(speed) {
+  this.fps = speed;
+  console.log(this.fps);
 }
