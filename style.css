@@ -2,105 +2,34 @@ body,
 html {
   padding: 0;
   margin: 0;
-  font-family: arial;
+  font-family: consolas;
+  background-color: rgb(20, 20, 20);
+  color: rgb(236, 236, 236);
 }
 
-ul {
-  padding: 0 0 0 2rem;
-  margin: 0;  
-  list-style-type: ' 👉 ';
-}
-
-a:link, 
-a:visited {
-  font-weight: bold;
-  color: #ff0000;
-}
-
-h1, h2, p { 
-  margin: 0;
-}
-
-h1 {
-  font-weight: 300;
-}
-
-h2 {
-  font-weight: 300;
-  color: #666;
-}
-
-div {
-  margin: 0;
-}
-
-p.subtext {
-  font-size: 0.8rem;
-  color: #444;
-}
-
-.container { 
-  width: 66%;
-  position: relative;
-  margin: 0 auto 0 auto;
-  max-width: 800px;
-  padding-top: 30px;
-}
-
-@media only screen and (max-width: 1160px) {
-  .container {
-    max-width: 700px;
-    min-width: 400px;
-  }
-}
-
-.header-section {
-  display: block;
-}
-
-.header-section .description {
-  vertical-align: top;
-  display: inline-block;
-  position: relative;
-  width: 49%;
-  padding-top: 40px;
-}
-
-.header-section .description h1 {
-  font-size: 4rem;
-}
-
-.header-section .img {
-  display: inline-block;
-  position: relative;
-  width: 49%;
-  text-align: center;
-}
-
-.header-section .img img {
-  border-radius: 50%;
-}
-
-.links {
-  padding: 10px 0 10px 0;
-}
-
-.links a {
-  text-align: center;
-  width: 24%;
-  display: inline-block;
-  position: relative;
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .bio {
-  padding-bottom: 20px;
-  text-align: justify;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.show-jokes {
-  padding-bottom: 20px;
+.bio .bio-container {
+  text-align: center;
 }
 
-.hidden {
-  display: none !important;
+.bio .title {
+  font-size: 6rem;
+  position: relative;
+  padding: 30px;
+}
+
+.bio .subtitle {
+  font-size: 2rem;
 }
