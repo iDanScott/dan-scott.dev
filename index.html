@@ -6,6 +6,59 @@
   <link rel="stylesheet" href="./style.css" />
   <link rel="icon" type="image/png" href="./favicon.png" />
   <title>Dan Scott | Software Engineer</title>
+  <script type="module" defer>
+    import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+
+    var scene = new THREE.Scene();
+    var sphere = null;
+
+    var getCamera = function() {
+      var aspect = window.innerWidth / window.innerHeight;
+      var fov = 100; 
+      var near = 1;
+      var far = 1000;
+      var result = new THREE.PerspectiveCamera(fov, aspect, near, far);
+      result.position.z = 20;
+      if (sphere) {
+        sphere.position.y = 8 + (1/window.innerHeight * 2000);
+      }
+      return result;
+    }
+
+    var camera = getCamera();
+
+    window.addEventListener("resize", function() {
+      camera = getCamera();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    var renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setClearColor( 0x000000, 0);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    renderer.domElement.style.position = "absolute";
+    document.querySelector(".container").insertBefore(renderer.domElement, document.querySelector(".bio"));
+
+    var geometry = new THREE.SphereGeometry(5, 15, 15, 0, Math.PI * 2, 0, Math.PI);
+    var material = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      wireframe: true
+    });
+
+    sphere = new THREE.Mesh(geometry, material);
+    sphere.position.y = 8 + (1/window.innerHeight * 2000);
+    scene.add(sphere);
+
+    var render = function () {
+        requestAnimationFrame(render);
+
+        sphere.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+    };
+
+    render();
+  </script>
 </head>
 <body>
   <div class="container">
