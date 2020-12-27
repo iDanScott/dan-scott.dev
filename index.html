@@ -39,7 +39,7 @@
     renderer.domElement.style.position = "absolute";
     document.querySelector(".container").insertBefore(renderer.domElement, document.querySelector(".bio"));
 
-    var geometry = new THREE.SphereGeometry(5, 15, 15, 0, Math.PI * 2, 0, Math.PI);
+    var geometry = new THREE.SphereGeometry(5, 20, 20, 0, Math.PI * 2, 0, Math.PI);
     var material = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       wireframe: true
@@ -47,6 +47,7 @@
 
     sphere = new THREE.Mesh(geometry, material);
     sphere.position.y = 8 + (1/window.innerHeight * 2000);
+    sphere.rotation.x = 0.4;
     scene.add(sphere);
 
     var render = function () {
