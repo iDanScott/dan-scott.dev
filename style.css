@@ -33,3 +33,13 @@ html {
 .bio .subtitle {
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 800px) {
+  .bio .title {
+    font-size: 3rem;
+  }
+
+  .bio .subtitle {
+    font-size: 1.5rem;
+  }
+}
